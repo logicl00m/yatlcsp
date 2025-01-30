@@ -1,0 +1,7 @@
+flow:
+  steps:
+    - name: "Say Hello"
+      with:
+        type: HelloFunction
+        params:
+          name: StringFromConsole
