@@ -1,29 +1,19 @@
 package org.noman5237.yatlcsp;
 
 import lombok.Builder;
-import lombok.Singular;
+import lombok.Getter;
 
-import java.util.List;
 import java.util.function.Supplier;
 
-
 @Builder
-@SuppressWarnings ("rawtypes")
-public class Step {
+public class Step <R> implements Supplier<R> {
 	
+	@Getter
 	private String name;
+	private Supplier<R> with;
 	
-	@Singular
-	private List<Parameter> parameters;
-	
-	private Supplier with;
-	
-	public void run() {
-		System.out.println("Step: " + name);
-		for (Parameter parameter : parameters) {
-			System.out.println("Parameter: " + parameter.getName() + " = " + parameter.getSupplier()
-			                                                                          .get());
-		}
-		System.out.println("Result: " + with.get());
+	@Override
+	public R get() {
+		return with.get();
 	}
 }

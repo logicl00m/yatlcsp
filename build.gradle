@@ -26,6 +26,10 @@ repositories {
 dependencies {
 	implementation 'org.noman5237:yatlcspap:1.0-SNAPSHOT'
 
+	implementation 'com.fasterxml.jackson.core:jackson-core'
+	implementation 'com.fasterxml.jackson.core:jackson-databind'
+	implementation 'com.fasterxml.jackson.core:jackson-annotations'
+
 	implementation 'org.projectlombok:lombok:1.18.30'
 	compileOnly 'org.projectlombok:lombok'
 

@@ -8,8 +8,8 @@ import java.util.function.Function;
 public class HelloFunction implements Function<String, String> {
 	
 	@Override
-	public String apply(String nnn) {
-		System.out.println("HelloFunction: " + nnn);
-		return String.format("Hello, %s!", nnn);
+	public String apply(String name) {
+		System.out.println("HelloFunction: " + name);
+		return String.format("HelloFunction: %s!", name);
 	}
 }

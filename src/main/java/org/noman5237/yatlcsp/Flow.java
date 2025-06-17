@@ -4,20 +4,25 @@ import lombok.Builder;
 import lombok.Singular;
 
 import java.util.List;
-import java.util.function.Function;
+import java.util.function.Supplier;
 
 @Builder
-public class Flow <T, R> implements Function<T, R> {
-	
+public class Flow <R> implements Supplier<R> {
 	
 	@Singular
-	private List<Step> steps;
+	private List<Step<?>> steps;
+	
+	private Persistence persistence;
 	
 	@Override
-	public R apply(T t) {
-		for (Step step : steps) {
-			step.run();
+	public R get() {
+		Object output = null;
+		for (var step : steps) {
+			output = step.get();
+			if (persistence != null) {
+				persistence.put(step.getName(), output);
+			}
 		}
-		return null;
+		return (R) output;
 	}
 }
